@@ -2,6 +2,7 @@ package com.lopesdev.sistemaacademia.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_aluno")
@@ -27,7 +28,20 @@ public class Aluno {
     @JoinColumn(name = "treino_id")
     private Treino treino;
 
+    @OneToMany(mappedBy = "aluno")
+    private List<Pagamento> pagamentos;
+
     public Aluno() {
+    }
+
+    public Aluno(long id, String nome, String email, int idade, LocalDate dataInscricao, Personal personal, Treino treino) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.idade = idade;
+        this.dataInscricao = dataInscricao;
+        this.personal = personal;
+        this.treino = treino;
     }
 
     public long getId() {

@@ -11,7 +11,6 @@ public class Treino {
     private long id;
 
     @Enumerated(EnumType.STRING)
-
     private TipoTreino tipoTreino;
 
     public long getId() {

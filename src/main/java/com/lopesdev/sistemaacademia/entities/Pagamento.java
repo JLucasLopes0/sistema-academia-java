@@ -1,8 +1,6 @@
 package com.lopesdev.sistemaacademia.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -13,9 +11,32 @@ public class Pagamento {
     @Id
     private long idPagamento;
 
-    private BigDecimal valorMensalidade;
+    private BigDecimal valorDoPagamento;
 
-    public Pagamento() {
+    @Enumerated(EnumType.STRING)
+    private StatusPagamento statusDoPagamento;
+
+    private int mes;
+    private int ano;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
     public long getIdPagamento() {
@@ -26,13 +47,32 @@ public class Pagamento {
         this.idPagamento = idPagamento;
     }
 
-    public BigDecimal getValorMensalidade() {
-        return valorMensalidade;
+    public BigDecimal getValorDoPagamento() {
+        return valorDoPagamento;
     }
 
-    public void setValorMensalidade(BigDecimal valorMensalidade) {
-        this.valorMensalidade = valorMensalidade;
+    public void setValorDoPagamento(BigDecimal valorDoPagamento) {
+        this.valorDoPagamento = valorDoPagamento;
     }
 
+    public StatusPagamento getStatusDoPagamento() {
+        return statusDoPagamento;
+    }
+
+    public void setStatusDoPagamento(StatusPagamento statusDoPagamento) {
+        this.statusDoPagamento = statusDoPagamento;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Pagamento() {
+    }
 
 }
+
