@@ -1,4 +1,4 @@
-package com.lopesdev.sistemaacademia.entities;
+package com.lopesdev.sistemaacademia.enums;
 
 public enum StatusPagamento {
     PENDENTE,

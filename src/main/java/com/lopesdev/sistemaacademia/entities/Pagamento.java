@@ -1,5 +1,6 @@
 package com.lopesdev.sistemaacademia.entities;
 
+import com.lopesdev.sistemaacademia.enums.StatusPagamento;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
