@@ -17,6 +17,7 @@ public class AlunoServiceTest {
 
     @Mock
     private AlunoRepository alunoRepository;
+    //Um mock
 
     @InjectMocks
     private AlunoService alunoService;

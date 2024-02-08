@@ -1,5 +1,6 @@
 package com.lopesdev.sistemaacademia.controllers;
 
+import com.lopesdev.sistemaacademia.dtos.AlunoDTO;
 import com.lopesdev.sistemaacademia.entities.Aluno;
 import com.lopesdev.sistemaacademia.repositories.AlunoRepository;
 import com.lopesdev.sistemaacademia.services.AlunoService;
@@ -22,7 +23,7 @@ public class AlunoController {
     }
 
     @GetMapping(value="/{id}")
-    public Optional<Aluno> findById(@PathVariable Long id){
+    public AlunoDTO findById(@PathVariable Long id){
         return alunoService.findById(id);
     }
 

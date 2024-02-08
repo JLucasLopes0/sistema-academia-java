@@ -1,6 +1,6 @@
 package com.lopesdev.sistemaacademia.entities;
 
-import com.lopesdev.sistemaacademia.enums.TipoTreino;
+import com.lopesdev.sistemaacademia.enums.EnumTipoTreino;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +12,7 @@ public class Treino {
     private long id;
 
     @Enumerated(EnumType.STRING)
-    private TipoTreino tipoTreino;
+    private EnumTipoTreino tipoTreino;
 
     public long getId() {
         return id;
@@ -22,11 +22,11 @@ public class Treino {
         this.id = id;
     }
 
-    public TipoTreino getTipoTreino() {
+    public EnumTipoTreino getTipoTreino() {
         return tipoTreino;
     }
 
-    public void setTipoTreino(TipoTreino tipoTreino) {
+    public void setTipoTreino(EnumTipoTreino tipoTreino) {
         this.tipoTreino = tipoTreino;
     }
 

@@ -1,6 +1,6 @@
 package com.lopesdev.sistemaacademia.entities;
 
-import com.lopesdev.sistemaacademia.enums.StatusPagamento;
+import com.lopesdev.sistemaacademia.enums.EnumStatusPagamento;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,7 +15,7 @@ public class Pagamento {
     private BigDecimal valorDoPagamento;
 
     @Enumerated(EnumType.STRING)
-    private StatusPagamento statusDoPagamento;
+    private EnumStatusPagamento statusDoPagamento;
 
     private int mes;
     private int ano;
@@ -56,11 +56,11 @@ public class Pagamento {
         this.valorDoPagamento = valorDoPagamento;
     }
 
-    public StatusPagamento getStatusDoPagamento() {
+    public EnumStatusPagamento getStatusDoPagamento() {
         return statusDoPagamento;
     }
 
-    public void setStatusDoPagamento(StatusPagamento statusDoPagamento) {
+    public void setStatusDoPagamento(EnumStatusPagamento statusDoPagamento) {
         this.statusDoPagamento = statusDoPagamento;
     }
 

@@ -1,6 +1,6 @@
 package com.lopesdev.sistemaacademia.enums;
 
-public enum StatusPagamento {
+public enum EnumStatusPagamento {
     PENDENTE,
     PAGO,
     ATRASADO

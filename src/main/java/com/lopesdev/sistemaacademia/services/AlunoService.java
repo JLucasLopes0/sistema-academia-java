@@ -1,5 +1,6 @@
 package com.lopesdev.sistemaacademia.services;
 
+import com.lopesdev.sistemaacademia.dtos.AlunoDTO;
 import com.lopesdev.sistemaacademia.entities.Aluno;
 import com.lopesdev.sistemaacademia.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,15 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Optional<Aluno> findById(Long id) {
-        return alunoRepository.findById(id);
+    public AlunoDTO findById(Long id) {
+        Optional<Aluno> optionalAluno = alunoRepository.findById(id);
+        if (optionalAluno.isPresent()) {
+            Aluno aluno = optionalAluno.get();
+            return new AlunoDTO(aluno);
+        }
+        else {
+            return null;
+        }
     }
 
     public Aluno save(@RequestBody Aluno aluno) {
