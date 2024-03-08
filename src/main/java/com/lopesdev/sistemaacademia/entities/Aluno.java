@@ -1,6 +1,9 @@
 package com.lopesdev.sistemaacademia.entities;
 
+import com.lopesdev.sistemaacademia.enums.EnumTipoTreino;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "O nome deve ser informado")
     private String nome;
 
     private String email;
@@ -20,13 +24,14 @@ public class Aluno {
 
     private LocalDate dataInscricao;
 
+    private String endereco;
+
+    @Enumerated(EnumType.STRING)
+    private EnumTipoTreino tipoTreino;
+
     @ManyToOne
     @JoinColumn(name = "personal_id")
     private Personal personal;
-
-    @OneToOne
-    @JoinColumn(name = "treino_id")
-    private Treino treino;
 
     @OneToMany(mappedBy = "aluno")
     private List<Pagamento> pagamentos;
@@ -34,14 +39,15 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(long id, String nome, String email, int idade, LocalDate dataInscricao, Personal personal, Treino treino) {
+    public Aluno(long id, String nome, String email, int idade, LocalDate dataInscricao, String endereco, EnumTipoTreino tipoTreino, Personal personal) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.idade = idade;
         this.dataInscricao = dataInscricao;
+        this.endereco = endereco;
+        this.tipoTreino = tipoTreino;
         this.personal = personal;
-        this.treino = treino;
     }
 
     public long getId() {
@@ -84,5 +90,37 @@ public class Aluno {
         this.dataInscricao = dataInscricao;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public EnumTipoTreino getTipoTreino() {
+        return tipoTreino;
+    }
+
+    public void setTipoTreino(EnumTipoTreino tipoTreino) {
+        this.tipoTreino = tipoTreino;
+    }
+
+    public Personal getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+
+    public List<Pagamento> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(List<Pagamento> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
 
 }
+

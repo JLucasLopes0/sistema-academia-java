@@ -10,17 +10,21 @@ public class AlunoDTO {
     private int idade;
     private LocalDate dataInscricao;
 
+    private String endereco;
+
     public AlunoDTO(Aluno aluno) {
         this.nome = aluno.getNome();
         this.idade = aluno.getIdade();
         this.dataInscricao = aluno.getDataInscricao();
     }
 
-    public AlunoDTO(String nome, int idade, LocalDate dataInscricao) {
-        this.nome = nome;
-        this.idade = idade;
-        this.dataInscricao = dataInscricao;
+    public AlunoDTO(Aluno aluno, String endereco) {
+        this.nome = aluno.getNome();
+        this.idade = aluno.getIdade();
+        this.dataInscricao = aluno.getDataInscricao();
+        this.endereco = aluno.getEndereco();
     }
+
 
     public String getNome() {
         return nome;
@@ -46,4 +50,11 @@ public class AlunoDTO {
         this.dataInscricao = dataInscricao;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 }

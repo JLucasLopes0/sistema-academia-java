@@ -2,16 +2,21 @@ package com.lopesdev.sistemaacademia.controllers;
 
 import com.lopesdev.sistemaacademia.dtos.AlunoDTO;
 import com.lopesdev.sistemaacademia.entities.Aluno;
-import com.lopesdev.sistemaacademia.repositories.AlunoRepository;
 import com.lopesdev.sistemaacademia.services.AlunoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/aluno")
+@RequestMapping(value = "/alunos")
 public class AlunoController {
 
     @Autowired
@@ -22,15 +27,55 @@ public class AlunoController {
         return alunoService.findAll();
     }
 
+    @PatchMapping(value = "/{id}/atualizar-email")
+    public ResponseEntity<String> atualizarEmailAluno (
+            @PathVariable Long id,
+            @RequestParam(name = "novoEmail") String novoEmail) {
+
+        //Verifica se existe um aluno com o ID fornecido
+        if (!alunoService.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não encontrado com o ID: " + id);
+        }
+
+        //Atualiza o email do aluno com base em seu ID
+        alunoService.atualizarEmail(id, novoEmail);
+
+        return ResponseEntity.status(HttpStatus.OK).body("Email atualizado com sucesso para: " + novoEmail);
+    }
+
+    @GetMapping(value="/buscar")
+    public List<Aluno> buscarAlunoPorNome(
+            @RequestParam(name = "nome", required = false) String nome) {
+        if (nome == null || nome.isEmpty()) {
+            alunoService.findAll();
+        }
+
+        //Obtém todos os alunos
+        List<Aluno> todosAlunos = alunoService.findAll();
+
+        //Filtra os alunos com base no nome
+        List<Aluno> resultado = todosAlunos.stream()
+                .filter(aluno -> aluno.getNome().contains(nome))
+                .collect(Collectors.toList());
+
+        return resultado;
+    }
+
     @GetMapping(value="/{id}")
     public AlunoDTO findById(@PathVariable Long id){
         return alunoService.findById(id);
     }
 
+    @GetMapping(value="/admin/{id}")
+    public AlunoDTO findByIdAdmin(@PathVariable Long id) {
+        return alunoService.findByIdAdmin(id);
+    }
+
     @PostMapping
-    public Aluno insert(@RequestBody Aluno aluno) {
+    public Aluno insert(@RequestBody @Valid Aluno aluno) {
         return alunoService.save(aluno);
     }
+
 
     @PutMapping(value="/{id}")
     public Aluno update(@RequestBody Aluno aluno) {
@@ -41,6 +86,8 @@ public class AlunoController {
     public void delete(@PathVariable Long id) {
         alunoService.deleteById(id);
     }
+
+
 
 }
 
