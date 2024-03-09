@@ -87,6 +87,11 @@ public class AlunoController {
         alunoService.deleteById(id);
     }
 
+   @GetMapping(value="/idademaiorque")
+    public List<Aluno> encontrarPorIdadeMaiorQue
+            (@RequestParam(name = "idade") int idade) {
+        return alunoService.encontrarPorIdadeMaiorQue(idade);
+    }
 
 
 }

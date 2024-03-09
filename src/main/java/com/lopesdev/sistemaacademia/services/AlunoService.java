@@ -75,4 +75,7 @@ public class AlunoService {
     }
 
 
+    public List<Aluno> encontrarPorIdadeMaiorQue(int idade) {
+        return alunoRepository.encontrarPorIdadeMaiorQue(idade);
+    }
 }
