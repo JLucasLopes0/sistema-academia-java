@@ -11,10 +11,19 @@ import java.util.List;
 @Repository
 public interface AlunoRepository extends JpaRepository <Aluno, Long> {
 
-    //Consulta JPQL para obter todos os alunos c/
-    //idade superior a determinado valor.
+    /*
+    Consulta JPQL para obter todos os alunos c/
+    idade superior a determinado valor.
+    */
     @Query("SELECT a FROM Aluno a WHERE a.idade > :idade")
     List<Aluno> encontrarPorIdadeMaiorQue(@Param("idade") int idade);
+
+    /*Consulta JPQL para obter todos os alunos de determinado personal
+    a partir do seu nome.
+     */
+    @Query("SELECT a FROM Aluno a WHERE LOWER(a.personal.nome) = LOWER(:NomePersonal)")
+    List<Aluno> encontrarAlunosPeloNomeDoPersonal(@Param("nomePersonal") String nomePersonal);
+
 
 }
 

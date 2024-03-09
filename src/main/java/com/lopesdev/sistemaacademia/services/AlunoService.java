@@ -5,7 +5,6 @@ import com.lopesdev.sistemaacademia.entities.Aluno;
 import com.lopesdev.sistemaacademia.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -77,5 +76,9 @@ public class AlunoService {
 
     public List<Aluno> encontrarPorIdadeMaiorQue(int idade) {
         return alunoRepository.encontrarPorIdadeMaiorQue(idade);
+    }
+
+    public List<Aluno> encontrarAlunosPeloNomeDoPersonal(String nomePersonal) {
+        return alunoRepository.encontrarAlunosPeloNomeDoPersonal(nomePersonal);
     }
 }

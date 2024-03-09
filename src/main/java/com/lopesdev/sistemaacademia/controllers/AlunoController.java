@@ -76,7 +76,6 @@ public class AlunoController {
         return alunoService.save(aluno);
     }
 
-
     @PutMapping(value="/{id}")
     public Aluno update(@RequestBody Aluno aluno) {
         return alunoService.save(aluno);
@@ -91,6 +90,12 @@ public class AlunoController {
     public List<Aluno> encontrarPorIdadeMaiorQue
             (@RequestParam(name = "idade") int idade) {
         return alunoService.encontrarPorIdadeMaiorQue(idade);
+    }
+
+    @GetMapping(value="/encontrarosalunosdopersonal")
+    public List<Aluno> encontrarAlunosPeloNomeDoPersonal
+            (@RequestParam(name = "nome") String nomePersonal) {
+        return alunoService.encontrarAlunosPeloNomeDoPersonal(nomePersonal);
     }
 
 
